@@ -3,7 +3,7 @@ IMPORTANT NOTES 🔥
 IMPORTANT NOTES 🔥
 IMPORTANT NOTES 🔥
 
-1- Run tests using `npm test` script (see `package.json`)
+1- Run tests using ` test` script (see `package.json`)
 2- Tests use their own database connection (see `knexfile.js` and `data/dbConfig.js`)
 3- Tests will fail to run until server.js and migration(s) are sufficiently fleshed out
 4- Opening the `test.db3` with SQLite Studio might prevent tests from working
