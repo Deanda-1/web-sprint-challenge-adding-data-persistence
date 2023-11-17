@@ -2,7 +2,7 @@ const db = require('../../data/dbConfig')
 
 async function get() {
     const rows = await db('resources');
-    rerturn(rows)
+    return(rows)
 }
 
 async function create(resource) {
