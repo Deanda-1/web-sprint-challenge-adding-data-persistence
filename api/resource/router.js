@@ -1,19 +1,25 @@
-const resource = require('./model')
+const express = require('express')
+const Resource = require('./model')
+const { checkResource } = require('./middleware')
 
-async function checkResource(req, res, next) {
-    const { resource_name } = req.body
-    const resource = await Resource.getByName(resource_name)
+const router = express.Router()
+
+router.get('/', async (req, res, next) => {
+    const data = await Resource.get()
     try {
-        if(resource.length === 0) {
-            next();
-        } else {
-            next({ status: 400, message: 'Resource name must be unique' })
-        }
+        res.status(200).json(data)
     } catch (error) {
         next(error)
     }
-}
+})
 
-module.exports = {
-    checkResource
-}
+router.post('/', checkResource, async (req, res, next) => {
+    const data = await Resource.create(req.body)
+    try {
+        res.status(200).json(data)
+    } catch (error) {
+        next(error)
+    }
+})
+
+module.exports = router
