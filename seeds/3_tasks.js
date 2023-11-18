@@ -2,7 +2,7 @@ exports.seed = async function (knex) {
     await knex('tasks').del()
     await knex('tasks').insert([
         {
-            task_description: 'begine initial migration',
+            task_description: 'begin initial migration',
             task_notes: 'knex migrate:make {name}',
             task_completed: true,
             project_id: 1
