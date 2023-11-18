@@ -6,7 +6,8 @@ async function checkTask(req, res, next) {
         let project = await Project.getById(project_id) 
         if(project.length === 0 || !project_id) {
             next({ status: 400, message: "invalid project_id" })
-        } else if(!task_description) {
+        } 
+        else if(!task_description) {
             next({ status: 400, message: "requires task_descriptions!" })
         } else {
             next();
@@ -15,6 +16,7 @@ async function checkTask(req, res, next) {
         next(error)
     }
 }
+
 
 module.exports = {
     checkTask
