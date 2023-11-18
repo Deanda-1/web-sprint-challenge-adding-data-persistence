@@ -7,7 +7,7 @@ exports.seed = async function (knex) {
             project_completed: false
         },
         {
-            project_name: 'Seed table',
+            project_name: 'Seed Table',
             project_description: 'Create seeds for tables',
             project_completed: true
         },
