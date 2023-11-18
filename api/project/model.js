@@ -2,7 +2,7 @@ const db = require('../../data/dbConfig')
 
 async function get() {
     const rows = await db('projects');
-    const result = rows.map(rows => {
+    const result = rows.map(row => {
         return {
             ...row,
             project_completed: row.project_completed ? true : false 
@@ -14,7 +14,7 @@ async function get() {
 async function create(project) {
     const [newID] = await db('projects').insert(project)
     const newPost = await db('projects').where('project_id', newID)
-    const result = newID.map(row => {
+    const result = newPost.map(row => {
         return {
             ...row,
             project_completed: row.project_completed ? true : false
