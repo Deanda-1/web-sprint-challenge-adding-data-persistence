@@ -13,7 +13,7 @@ router.get('/', async (ereq, res, next) => {
 })
 
 router.post('/', checkProject, async (req, res, next) => {
-    const data = await Project.create(req.body)
+   const  data = await Project.create(req.body)
     try {
         res.status(201).json(data)
     } catch (error) {
