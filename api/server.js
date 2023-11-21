@@ -17,7 +17,7 @@ server.get('./', (req, res) => {
 })
 // selint-disable-next-line no-unused-bars
  
-server.use((err, req, res, next) => {
+server.use((err, req, res) => {
     res.status(err.status || 500).json({
         message: err.message
     })

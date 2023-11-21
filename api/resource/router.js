@@ -5,8 +5,8 @@ const { checkResource } = require('./middleware')
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
-    const data = await Resource.get()
     try {
+        const data = await Resource.get()
         res.status(200).json(data)
     } catch (error) {
         next(error)
