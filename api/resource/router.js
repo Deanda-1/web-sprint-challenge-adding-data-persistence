@@ -26,7 +26,7 @@ router.use("*", (req, res) => {
     res.json({ message: 'api is live', api: 'active' })
 })
 
-router.use((err, req, res, next) => {
+router.use((err, req, res) => {
     res.status(500).json({
         custom: 'resource-router error occurred',
         message: err.message,
