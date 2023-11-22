@@ -1,17 +1,20 @@
-
-async function checkProject(req, res, next) {
+const checkProject = (req, res, next) => {
     try {
         const { project_name } = req.body
-        if(project_name) {
-            next();
+        if (
+            project_name === undefined ||
+            typeof(project_name) !== "string" ||
+            !project_name.trim()
+        ) {
+            next ({ status: 400, message: 'invalid project_name' })
         } else {
-            next({ status: 400, message: 'project needs a name!' })
+            next()
         }
-    } catch (error) {
-        next(error)
+    } catch(err) {
+        next(err)
     }
 }
- 
+
 module.exports = {
-    checkProject
+    checkProject,
 }
