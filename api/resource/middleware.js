@@ -1,20 +1,19 @@
-const checkResource = (req, res, next) => {
+const Resource = require('./model')
+
+async function checkResource(req, res, next) {
+    const { resource_name } = req.body
+    const resource = await Resource.getByName(resource_name)
     try {
-        const { resource_name } = req.body
-        if (
-            resource_name === undefined ||
-            typeof(resource_name) !== "string" ||
-            !resource_name.trim()
-        ) {
-            next({ status: 400, message: 'invalid resource_name' })
+        if(resource.length === 0) {
+            next();
         } else {
-            next()
+            next({ status: 400, message: 'Resource name must be unique!' })
         }
-    } catch(err) {
-        next(err)
+    } catch (error) {
+        next(error)
     }
 }
 
 module.exports = {
-    checkResource,
+    checkResource
 }

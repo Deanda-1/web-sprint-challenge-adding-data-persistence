@@ -6,7 +6,7 @@ const server = express();
 
 server.use(express.json())
 
-server.use("/api/resources", resourcesRouter)
+server.use("/api/resources", resourcesRouter);
 
 server.use("/api/projects", projectsRouter)
 

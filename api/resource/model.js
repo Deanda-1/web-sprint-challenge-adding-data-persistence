@@ -1,34 +1,24 @@
 const db = require('../../data/dbConfig')
 
-function addResource(resource) {
-    return db('resources').insert(resource)
-        .then(([resource_id]) => {
-            return db('resources').where('resource_id', resource_id).first()
-        })
+async function get() {
+    const rows = await db('resources');
+    return rows
 }
 
-async function getResources() {
-    const resources = []
-    const resourceRows = await db('resources as r')
-        .select(
-            'r.resource_id',
-            'r.resource_name',
-            'r.resource_description', 
-        )
-        .orderBy(
-            'r.resource_id'
-        )
-    resourceRows.forEach(resource => {
-        resources.push({
-            resource_id: resource.resource.id,
-            resource_name: resource.resource_name,
-            resource_description: resource.resource.description,
-        })
-    })
-    return resources 
+async function create(resource) {
+    const [newID] = await db('resources').insert(resource)
+    const newPost = await db('resources').where('resource_id', newID)
+    return newPost[0]
+}
+
+async function getByName(resource) {
+    const row = await db('resources')
+        .where('resource_name', resource)
+    return (row)
 }
 
 module.exports = {
-    addResource,
-    getResources,
+    get,
+    create,
+    getByName
 }
